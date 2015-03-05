@@ -24,4 +24,7 @@ module.exports = {
         exec(spotify_command('Previous', ''), function callback(error, stdout, stderr) {
         });
     }
+    current: function (finished) {
+        
+    }
 };
