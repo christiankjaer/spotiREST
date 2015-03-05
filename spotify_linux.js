@@ -15,5 +15,13 @@ module.exports = {
     playPause: function () {
         exec(spotify_command('PlayPause', ''), function callback(error, stdout, stderr) {
         });
+    },
+    next: function () {
+        exec(spotify_command('Next', ''), function callback(error, stdout, stderr) {
+        });
+    },
+    previous: function () {
+        exec(spotify_command('Previous', ''), function callback(error, stdout, stderr) {
+        });
     }
 };

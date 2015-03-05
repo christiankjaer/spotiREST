@@ -15,15 +15,9 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
-app.get('/pause', function (req, res) {
+app.get('/playpause', function (req, res) {
   spotify_control.playPause();
   res.send('Paused');
-})
-
-app.get('/play', function (req, res) {
-  exec(spotify_command('Play', ''), function callback(error, stdout, stderr) {
-  });
-  res.send('Play');
 })
 
 app.get('/open/:uri', function (req, res) {
@@ -31,12 +25,22 @@ app.get('/open/:uri', function (req, res) {
   res.send('Plays: ' + req.params.uri);
 })
 
+app.get('/next', function (req, res) {
+  spotify_control.next();
+  res.send('Next');
+})
+app.get('/previous', function (req, res) {
+  spotify_control.previous();
+  res.send('Next');
+})
+
+app.get('/current', function (req, res) {
+    // Sends the res object to the control, then it can be used in the callback
+    spotify_control.current(res);
+})
+
+
 var server = app.listen(3000, function () {
-
-  var host = server.address().address
-  var port = server.address().port
-
-  console.log('Example app listening at http://%s:%s', host, port);
 })
 
 
