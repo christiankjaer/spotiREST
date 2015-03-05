@@ -23,8 +23,11 @@ module.exports = {
     previous: function () {
         exec(spotify_command('Previous', ''), function callback(error, stdout, stderr) {
         });
-    }
+    },
     current: function (finished) {
-        
+        str = "qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Metadata | grep trackid | awk '{print $2}'";
+        exec(str, function (error, stdout, stderr) {
+            finished.send(stdout);
+        });
     }
 };
